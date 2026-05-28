@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第2種電気工事士 技能補習日別スケジュール（7/13 3周完了版）</title>
+    <title>第2種電気工事士 技能補習日別スケジュール（1周目1日1問・6/27 4問・3周目1日2問）</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -18,6 +18,7 @@
             --accent-red: #ef4444;
             --border: #334155;
             --off-day: #1e1b4b; /* 行事休みの背景色 */
+            --saturday-bg: #0f3f5c; /* 土曜特訓の背景色 */
         }
 
         * {
@@ -148,6 +149,7 @@
         .dot-phase2 { background-color: #10b981; }
         .dot-phase3 { background-color: #f43f5e; }
         .dot-off { background-color: #64748b; }
+        .dot-sat { background-color: #38bdf8; border: 1px solid #fbbf24;}
 
         /* 日別カレンダーレイアウト */
         .timeline-container {
@@ -188,6 +190,12 @@
             border-left-color: #64748b; 
             background: var(--off-day);
             opacity: 0.75;
+        }
+        .sat-special {
+            border-left-color: var(--secondary);
+            background: var(--saturday-bg);
+            border-width: 2px 2px 2px 8px;
+            border-color: var(--secondary);
         }
 
         .day-meta {
@@ -312,7 +320,7 @@
 
 <header>
     <h1><i class="fa-solid fa-calendar-days" style="color: var(--secondary);"></i> 技能補習日別ロードマップ</h1>
-    <p>7/13 3周完了特化版 ｜ 学校行事調整済・効率優先スケジュール</p>
+    <p>1周目1日1問 ＆ 6/27特別4問特訓 ＆ 3周目1日2問最適化版</p>
 </header>
 
 <div class="container">
@@ -336,7 +344,7 @@
     <div class="controls">
         <div class="view-title">
             <i class="fa-solid fa-list-check"></i>
-            トレーニングメニュー（平日放課後16:00〜18:00）
+            トレーニングメニュー（平日放課後16:00〜18:00 / 6/27特別補習）
         </div>
         <div class="legend">
             <div class="legend-item"><span class="dot dot-phase0"></span>複線図</div>
@@ -347,6 +355,7 @@
             <div class="legend-item"><span class="dot dot-phase2"></span>2周目</div>
             <div class="legend-item"><span class="dot dot-phase3"></span>3周目</div>
             <div class="legend-item"><span class="dot dot-off"></span>休み（行事）</div>
+            <div class="legend-item"><span class="dot dot-sat"></span>土曜特訓</div>
         </div>
     </div>
 
@@ -357,59 +366,64 @@
 </div>
 
 <script>
-    // 2026年 補習日別全データ
+    // 2026年 補習日別全データ (1周目はすべて1日1問に分解、6/27に土曜特別4問、3周目はすべて1日2問に調整)
     const scheduleData = [
-        // Phase 0: 複線図 3日間
-        { date: "6/01", day: "月", phase: "p-0", label: "複線図集中", title: "複線図の基本＆No.1〜5", desc: "電線の接地側（極白）と非接地側（極黒）の接続ルールを徹底習得します。" },
-        { date: "6/02", day: "火", phase: "p-0", label: "複線図集中", title: "3路・4路・パイロットランプ＆No.6〜10", desc: "複雑なスイッチ回路を整理。配線色を決定する共通ルールを固定します。" },
-        { date: "6/03", day: "水", phase: "p-0", label: "複線図集中", title: "全13問タイムトライアル(3分目標)", desc: "問題を見た瞬間に、迷わず正確に複線図が完成できる状態に引き上げます。" },
+        // Phase 0: 複線図 3日間（6/2の行事を考慮）
+        { date: "6/01", day: "月", phase: "p-0", label: "複線図集中", title: "複線図の基本＆No.1〜5", desc: "電線の接地側（極白）と非接地側（極黒）の接続ルールを徹底的に学習します。" },
         
-        // 1周目: グループ別（効率定着）
-        { date: "6/04", day: "木", phase: "g-a", label: "1周目:Group A", title: "公表問題 No.1 (基本回路)", desc: "基本 of VVFストリップおよびランプレセプタクルの輪作り。寸法計算の理解。" },
-        { date: "6/05", day: "金", phase: "g-a", label: "1周目:Group A", title: "公表問題 No.2 (常時点灯PL)", desc: "パイロットランプ常時点灯の結線ルール。メタルラス壁防護の施工。" },
-        { date: "6/08", day: "月", phase: "g-a", label: "1周目:Group A", title: "公表問題 No.3 (タイムスイッチ)", desc: "端子台をタイムスイッチに見立てた回路。基本配線の精度重視。" },
-        { date: "6/09", day: "火", phase: "g-a", label: "1周目:Group A", title: "公表問題 No.5 ＆ No.9 (コンセント基本)", desc: "類似性の高い2つのコンセント結線(20A接地極・EET)を同日施工し、効率的にマスターします。" },
-        { date: "6/10", day: "水", phase: "g-a", label: "1周目:Group A", title: "公表問題 No.10 (同時点滅PL)", desc: "同時点滅回路は結線の難関。落ち着いて確実に施工。器具の破損に注意。" },
+        // 6月2日学校行事
+        { date: "6/02", day: "火", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "今日は補習はありません。明日から複線図の第2段階を行います。" },
         
-        { date: "6/11", day: "木", phase: "g-b", label: "1周目:Group B", title: "公表問題 No.6 (3路スイッチ)", desc: "3路スイッチ(0番端子)の配線ルール。共通線の色に決まりを作ります。" },
-        { date: "6/12", day: "金", phase: "g-b", label: "1周目:Group B", title: "公表問題 No.7 (4路スイッチ)", desc: "3路の間に割り込む4路スイッチの複雑配線。複線図通りの結線を。" },
+        { date: "6/03", day: "水", phase: "p-0", label: "複線図集中", title: "3路・4路・パイロットランプ＆No.6〜10", desc: "複雑なスイッチ回路を整理。配線色を決定する共通ルールを固定します。" },
+        { date: "6/04", day: "木", phase: "p-0", label: "複線図集中", title: "全13問タイムトライアル(3分目標)", desc: "問題を見た瞬間に、迷わず正確に複線図が完成できる状態に引き上げます。" },
         
-        { date: "6/15", day: "月", phase: "g-c", label: "1周目:Group C", title: "公表問題 No.4 (動力3相3線)", desc: "ブレーカーおよび端子台結線。配線の極性とネジ締めトルクを確認。" },
-        { date: "6/16", day: "火", phase: "g-c", label: "1周目:Group C", title: "公表問題 No.8 (リモコンリレー)", desc: "端子台代用のリモコンリレー回路。渡り線の寸法を一定に保つ。" },
-        { date: "6/17", day: "水", phase: "g-c", label: "1周目:Group C", title: "公表問題 No.13 (自動点滅器)", desc: "自動点滅器端子台への結線。施工条件に沿った配線色の固定。" },
-        { date: "6/18", day: "木", phase: "g-d", label: "1周目:Group D", title: "公表問題 No.11 (ねじなし管)", desc: "金属電線管（E管）のボックス取付、ネジ頭のねじ切り、ボンド線掛け。" },
+        // 1周目: グループ別・1日1問徹底期間（6/5〜6/18）
+        { date: "6/05", day: "金", phase: "g-a", label: "1周目:No.1", title: "公表問題 No.1 (基本回路)", desc: "基本のVVFストリップおよびランプレセプタクルの輪作り。寸法計算の理解。" },
+        { date: "6/08", day: "月", phase: "g-a", label: "1周目:No.2", title: "公表問題 No.2 (常時点灯PL)", desc: "パイロットランプ常時点灯の結線ルール。メタルラス壁防護の施工。" },
+        { date: "6/09", day: "火", phase: "g-c", label: "1周目:No.3", title: "公表問題 No.3 (タイムスイッチ)", desc: "端子台をタイムスイッチに見立てた回路。基本配線の端子台差込とネジ締めの精度重視。" },
+        { date: "6/10", day: "水", phase: "g-a", label: "1周目:No.5", title: "公表問題 No.5 (20A接地極付)", desc: "125V・20A接地極付コンセント。太い接続刃の締め付け固定、コンセントの極性確認。" },
+        { date: "6/11", day: "木", phase: "g-a", label: "1周目:No.9", title: "公表問題 No.9 (EETコンセント)", desc: "接地端子付コンセント(EET)への接続。渡り線の整理方法と結線ルールの定着。" },
+        { date: "6/12", day: "金", phase: "g-a", label: "1周目:No.10", title: "公表問題 No.10 (同時点滅PL)", desc: "同時点滅回路は結線の最難関。落ち着いて確実に施工。器具の接続順番を確認します。" },
+        { date: "6/15", day: "月", phase: "g-b", label: "1周目:No.6", title: "公表問題 No.6 (3路スイッチ)", desc: "3路スイッチ(0番端子)の配線ルール。共通線に使用する色に厳格なルールを定めます。" },
+        { date: "6/16", day: "火", phase: "g-b", label: "1周目:No.7", title: "公表問題 No.7 (4路スイッチ)", desc: "3路の間に割り込む4路スイッチの複雑配線。複線図通りの色の組み合わせを意識します。" },
+        { date: "6/17", day: "水", phase: "g-c", label: "1周目:No.4", title: "公表問題 No.4 (動力3相3線)", desc: "ブレーカーおよび端子台結線。太い電線の扱い、配線の極性とネジ締めトルクを確認。" },
+        { date: "6/18", day: "木", phase: "g-c", label: "1周目:No.8", title: "公表問題 No.8 (リモコンリレー)", desc: "端子台代用のリモコンリレー回路。渡り線の寸法出しを整理し、器具の裏配線を習得。" },
         
         // 学校行事休み (1)
-        { date: "6/19", day: "金", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "今日は補習はありません。しっかり体を休めるか、自宅で複線図のイメトレをしましょう。" },
-        { date: "6/22", day: "月", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "補習はありません。明日から1周目の最終仕上げ（PF配管工事）が始まります。" },
+        { date: "6/19", day: "金", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "今日は補習はありません。しっかり体を休めるか、自宅で複線図の復習を。" },
+        { date: "6/22", day: "月", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "補習はありません。明日から1周目の最終課題を行います。" },
         
         // 1周目の仕上げ
-        { date: "6/23", day: "火", phase: "g-d", label: "1周目:Group D", title: "公表問題 No.12 (合成樹脂管)", desc: "PF管コネクタのロック、電線管の通し方の順番。これで1周目全13問が完了！" },
+        { date: "6/23", day: "火", phase: "g-c", label: "1周目:No.13", title: "公表問題 No.13 (自動点滅器)", desc: "自動点滅器端子台への結線。施工条件に沿った電線色の固定。1日1問での解説最終日。" },
+        { date: "6/24", day: "水", phase: "g-d", label: "1周目:No.11-12", title: "公表問題 No.11 ＆ No.12 (配管工事)", desc: "金属管施工(ねじなし管)とPF管のボックス接続。1周目のラストを飾る2つの大道具を同時に処理します。これで1周目全13問が完了！" },
 
-        // 2周目: スピードアップ（平日7日間で全13問を回すため、1日2問特訓を導入）
-        { date: "6/24", day: "水", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.1 ＆ No.2 (各40分制限)", desc: "ここからタイム測定を開始。器具・電線加工の手順を無駄なく組み換え。" },
-        { date: "6/25", day: "木", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.3 ＆ No.4 (各40分制限)", desc: "スピードと同時に「欠陥基準（芯線のはみ出し、ネジゆるみ）」を厳しく自己確認。" },
-        { date: "6/26", day: "金", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.5 ＆ No.6 (各40分制限)", desc: "3路スイッチの共通端子(0番)の結線を迷わずノータイムで施工できるように特訓。" },
-        { date: "6/29", day: "月", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.7 ＆ No.8 (各40分制限)", desc: "4路スイッチ、リモコンリレー回路。複雑な問題こそ作業整理が威力を発揮。" },
-        { date: "6/30", day: "火", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.9 ＆ No.10 (各40分制限)", desc: "同時点滅回路は結線時間を要するため、その他の基本パーツを極限まで加速。" },
-        { date: "7/01", day: "水", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.11 ＆ No.12 (各40分制限)", desc: "金属管・PF管の接続を焦らず正確に。力任せではなく正しい工具の使い方で。" },
-        { date: "7/02", day: "木", phase: "p-2", label: "2周目完了", title: "公表問題 No.13 (40分制限)", desc: "2周目最後の1問。タイムを計測し、行事休みに入る前の最終仕上がりを確認。" },
+        // 2周目: スピードアップ（6/25〜7/2）
+        { date: "6/25", day: "木", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.1 ＆ No.2 (各40分制限)", desc: "ここからタイム測定を開始。器具・電線加工の手順を無駄なく組み換え。" },
+        { date: "6/26", day: "金", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.3 ＆ No.4 (各40分制限)", desc: "スピードと同時に「欠陥基準（芯線のはみ出し、ネジゆるみ）」を厳しく自己確認。" },
+        
+        // 🌟 6月27日 土曜特別集中補習（ここで4問一気に対策を行い、全体の負担を下げます）
+        { date: "6/27", day: "土", phase: "sat-special", label: "土曜特別補習", title: "公表問題 No.5 ＆ No.6 ＆ No.7 ＆ No.8", desc: "【特別集中訓練】コンセント基本、3路、4路、リモコンリレーを一度に復習。一挙に施工手順の自動化（ノータイム結線）を確立させます。" },
+        
+        { date: "6/29", day: "月", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.9 ＆ No.10 (各40分制限)", desc: "同時点滅とEETコンセント。焦らず複雑な配線を素早く正確にまとめ上げます。" },
+        { date: "6/30", day: "火", phase: "p-2", label: "2周目:スピード", title: "公表問題 No.11 ＆ No.12 (各40分制限)", desc: "金属管・PF管の接続を焦らず正確に。力任せではなく正しい工具の使い方で。" },
+        { date: "7/01", day: "水", phase: "p-2", label: "2周目完了", title: "公表問題 No.13 (40分制限)", desc: "2周目最後の1問。タイムを計測し、行事休みに入る前の最終仕上がりを確認。" },
+        { date: "7/02", day: "木", phase: "p-3", label: "3周目開始", title: "模擬試験 No.1 (30分制限)", desc: "3周目模擬試験スタート。制限時間40分に対し、10分の余りを作って見直しを徹底。" },
         
         // 学校行事休み (2)
         { date: "7/03", day: "金", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "今日から週明けにかけて補習はお休みです。行事に全力で取り組みましょう。" },
-        { date: "7/06", day: "月", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "補習はありません。行事終了後、いよいよ最終の「3周目 模擬試験」が始まります。" },
-        { date: "7/07", day: "火", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "補習お休み最終日。明日から本番さながらのタイムトライアルを開始します。" },
+        { date: "7/06", day: "月", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "補習はありません。行事終了後、3周目の模擬試験が本格化します。" },
+        { date: "7/07", day: "火", phase: "off", label: "補習なし", title: "【学校行事】補習お休み", desc: "補習お休み最終日。明日から本番さながらの1日2問模擬試験を再開します。" },
 
-        // 3周目（模擬試験モード・30分目標）: 7月13日までに全問走破！
-        { date: "7/08", day: "水", phase: "p-3", label: "3周目:模擬戦", title: "模擬試験 No.1, No.2, No.3, No.4 (30分切目標)", desc: "本番と同様の資材状態から開始。見直し時間を確保する練習。合計4問施工。" },
-        { date: "7/09", day: "木", phase: "p-3", label: "3周目:模擬戦", title: "模擬試験 No.5, No.6, No.7, No.8 (30分切目標)", desc: "端子台・スイッチ類の完璧な施工。圧着マーク・極性の徹底確認。合計4問施工。" },
-        { date: "7/10", day: "金", phase: "p-3", label: "3周目:模擬戦", title: "模擬試験 No.9, No.10, No.11 (30分切目標)", desc: "同時点滅と管工事のスピード攻略。重大欠陥ゼロを維持します。合計3問施工。" },
-        { date: "7/13", day: "月", phase: "p-3", label: "3周目完了", title: "模擬試験 No.12, No.13 (30分切目標)", desc: "【目標達成】本日で3周目全13問の走破完了！いかなる課題にも動じない技術を確立。" },
+        // 3周目: 1日2問模擬試験を徹底（7/8〜7/15）
+        { date: "7/08", day: "水", phase: "p-3", label: "3周目:模擬戦", title: "模擬試験 No.2 ＆ No.3 (各30分制限)", desc: "本番と同様の材料支給からスタート。30分以内で施工し、余った時間を完全に見直しに充てます。" },
+        { date: "7/09", day: "木", phase: "p-3", label: "3周目:模擬戦", title: "模擬試験 No.4 ＆ No.5 (各30分制限)", desc: "動力遮断器への結線、接地極の極性。施工条件の特殊指定（色変更など）を完璧に見抜きます。" },
+        { date: "7/10", day: "金", phase: "p-3", label: "3周目:模擬戦", title: "模擬試験 No.6 ＆ No.7 (各30分制限)", desc: "3路・4路スイッチ回路の高速施工。整線（配線を綺麗に整える）の美しさも追求します。" },
+        { date: "7/13", day: "月", phase: "p-3", label: "3周目:模擬戦", title: "模擬試験 No.8 ＆ No.9 (各30分制限)", desc: "リモコンリレー・EETコンセント。手際よく器具取付と接続を完了させます。" },
+        { date: "7/14", day: "火", phase: "p-3", label: "3周目:模擬戦", title: "模擬試験 No.10 ＆ No.11 (各30分制限)", desc: "同時点滅と金属管施工。時間が厳しい課題でも余裕で30分以内をクリアします。" },
+        { date: "7/15", day: "水", phase: "p-3", label: "3周目完了", title: "模擬試験 No.12 ＆ No.13 (各30分制限)", desc: "【大目標達成】3周目全13問を完全制覇！制限時間40分に対し、見直し時間10分を完全に確保。" },
 
-        // 直前週: 最終調整（3周目が終わっているため、十分に余裕を持って弱点補強が可能）
-        { date: "7/14", day: "火", phase: "p-3", label: "直前総点検", title: "弱点箇所ピンポイント訓練（のの字曲げ・圧着等）", desc: "これまでのミス傾向に基づき、リングスリーブ圧着やねじ締めのトルク確認などの個別練習。" },
-        { date: "7/15", day: "水", phase: "p-3", label: "直前総点検", title: "器具取付＆結線部分のスピード再点検", desc: "器具配置、連用枠の表裏、電線剥ぎ取り寸法の最終点検を行います。" },
-        { date: "7/16", day: "木", phase: "p-3", label: "直前総点検", title: "施工条件のひっかけ読解トレーニング", desc: "過去問から施工条件の変更パターンを読み解き、本番の読込ミスを防ぎます。" },
+        // 直前週: 最終調整
+        { date: "7/16", day: "木", phase: "p-3", label: "直前総点検", title: "弱点箇所ピンポイント訓練 ＆ 施工条件読解", desc: "これまでのミス傾向（圧着マークやのの字等）をピンポイント練習し、施工条件の特記制限を読み解くトレーニングを行います。" },
         { date: "7/17", day: "金", phase: "p-3", label: "直前総点検", title: "最終イメージトレーニング ＆ 工具配置チェック", desc: "本番の持ち物を最終チェック。合格のビジョンを描いて前日は早めに休みましょう！" }
     ];
 
@@ -468,11 +482,11 @@
         updateProgress();
     }
 
-    // 進捗率の更新 (休みの日を除いた30日間を分母にします)
+    // 進捗率の更新 (休みの日を除いた実動日数を分母にします)
     function updateProgress() {
         const completedTasks = JSON.parse(localStorage.getItem("completedTasks") || "[]");
         const activeTasks = scheduleData.filter(item => item.phase !== "off");
-        const totalActive = activeTasks.length; // 実動30日
+        const totalActive = activeTasks.length; 
         
         // 完了した実動タスクの数を集計
         let completedActiveCount = 0;
